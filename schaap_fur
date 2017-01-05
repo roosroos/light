@@ -1,0 +1,91 @@
+Sheep[] sheeps; // declare the array
+int numSheeps = 50;
+int currentSheep = 0; 
+int sheepfur = 1;
+PImage img1;  // Declare a variable of type PImage
+PImage img2;
+PImage img3;
+PImage img4;
+PImage img5;
+PImage img6;
+PImage img;
+
+void setup() {
+  fullScreen(1);
+       img1 = loadImage("schaap1.jpg"); 
+    img2 = loadImage("schaap2.jpg"); 
+    img3 = loadImage("schaap3.jpg"); 
+    img4 = loadImage("schaap4.jpg"); 
+    img5 = loadImage("schaap5.jpg"); 
+    img6 = loadImage("schaap6.jpg"); 
+    sheeps = new Sheep[numSheeps]; // create the array
+      for (int i = 0; i < sheeps.length; i++) {
+      sheeps[i] = new Sheep(); // Create each object
+                                              }
+      }
+      
+
+void draw(){
+  background (0);
+    for (int i = 0; i < sheeps.length; i++) {
+        sheeps[i].display();        
+                                              }
+}
+      
+// Click to create a new Sheep
+void mousePressed() {
+  sheeps[currentSheep].start(mouseX, mouseY);
+    currentSheep++;
+    if (currentSheep >= numSheeps) {
+    currentSheep = 0;
+  }
+}
+
+class Sheep { 
+    float x,y;
+    boolean on = false;  // Turns the display on and off
+    
+void start(float xpos, float ypos) {
+      x = xpos-100;
+      y = ypos-100;  
+      on = true; 
+    }
+    
+
+void display(){
+     if (on == true) {
+               if (currentSheep < 10){
+              img = img1;}
+             else if  (currentSheep >= 10){
+             img = img2;}
+            else if (currentSheep >= 25){
+          img = img3;}
+             else if  (currentSheep >= 30){
+            img = img4;}
+             else if  (currentSheep >= 40){
+            img = img5;}
+             else if  (currentSheep >= 49){
+             img = img6;}
+                      stroke(0);
+      fill(256,256,256);
+      rectMode(CENTER);        
+      rect(x+88, y+70+45, 5, 25);
+      rect(x+112, y+70+45, 5, 25); 
+      arc(x+85, y+69, 15, 15,  PI, TWO_PI, OPEN);
+      arc(x+100, y+69, 15, 15, PI, TWO_PI, OPEN);
+      arc(x+115, y+69, 15, 15, PI, TWO_PI, OPEN);
+      arc(x+85, y+109, 15, 15,  0, PI, OPEN);
+      arc(x+100, y+109, 15, 15, 0, PI, OPEN);
+      arc(x+115, y+109, 15, 15, 0, PI, OPEN);
+      rect(x+75, y+80, 20, 20);
+      arc(x+70, y+80, 20, 20, HALF_PI, PI+HALF_PI, OPEN);
+      arc(x+74, y+99, 15, 15, HALF_PI, PI+HALF_PI, OPEN);      
+      arc(x+124, y+82, 15, 15, 0-HALF_PI, HALF_PI, OPEN);
+      arc(x+124, y+98, 15, 15, 0-HALF_PI, HALF_PI, OPEN);
+      //rect(x+98,y+88,50,40);
+      image(img,x+98*0.765,y+88*0.795,50,40);
+
+     }
+}
+
+}
