@@ -1,0 +1,75 @@
+Sheep[] sheeps; // declare the array
+int numSheeps = 50;
+int currentSheep = 0; 
+void setup() {
+  fullScreen(1);
+    sheeps = new Sheep[numSheeps]; // create the array
+      for (int i = 0; i < sheeps.length; i++) {
+      sheeps[i] = new Sheep(); // Create each object
+                                              }
+      }
+
+void draw(){
+  background (0);
+    for (int i = 0; i < sheeps.length; i++) {
+        sheeps[i].grow();
+        sheeps[i].display();
+        sheeps[i].drive();
+                                              }
+      }
+
+// Click to create a new Sheep
+void mousePressed() {
+  sheeps[currentSheep].start(mouseX, mouseY);
+    currentSheep++;
+    if (currentSheep >= numSheeps) {
+    currentSheep = 0;
+  }
+}
+
+class Sheep {
+  
+  //float xpos;
+  //float ypos;
+  float xspeed;
+  float x,y;
+  float rlength;
+  float rwidth;
+  boolean on = false;  // Turns the display on and off
+
+  
+void start(float xpos, float ypos) {
+      x = xpos;
+      y = ypos;  
+      rlength = 10;
+      rwidth = rlength*2;
+      on = true; 
+    }
+
+void grow() {
+  if (on == true) {
+    rlength += 0.5;
+  if (rlength > 500) { 
+    on = false; 
+    rlength = 10;  
+          }
+        }
+    }
+
+void drive(){
+ xspeed = 3;
+ x = x + xspeed;
+ if (x > width) {
+  x = 0;
+ }}
+
+void display(){
+     if (on == true) {
+            stroke(0);
+      fill(x, y, 10);
+      rectMode(CENTER);
+      rect(x,y,rlength,rwidth);
+    }
+  }
+}
+  
